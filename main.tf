@@ -44,14 +44,14 @@ resource "null_resource" "clf_null" {
                             inline = [
                             "sudo apt-get update",
                             "sudo apt-get -y install python3-pip",
-                            "pip3 install selenium",
 
                             "sudo apt-get update",
+                            "pip3 install selenium",
+
                             "sudo apt-get -y install unzip",
 
                             "wget https://chromedriver.storage.googleapis.com/75.0.3770.8/chromedriver_linux64.zip",
                             "unzip chromedriver_linux64.zip",
-
 
 
                             "wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -",
