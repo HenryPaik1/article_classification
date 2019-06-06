@@ -48,11 +48,23 @@ resource "null_resource" "clf_null" {
                             inline = [
                             "sudo apt-get update",
                             "sudo apt-get -y install python3-pip",
+                            
                             "sudo apt-get update",
                             "sudo apt-get -y install unzip",
-                            "wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip"
+                                                        
+                            "wget https://chromedriver.storage.googleapis.com/75.0.3770.8/chromedriver_linux64.zip"
                             "unzip chromedriver_linux64.zip",
+                            
+                            "wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -"
+                            "sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'",
+                            "sudo apt --fix-broken -y install",
+                            "sudo apt-get -y update",
+                            "sudo apt-get -y install google-chrome-stable",
+                            "
+
                             "git clone https://github.com/HenryPaik1/article_classification.git",
+                            "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb",
+"sudo dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install",
                             "python3 ~/article_classification/run_article.py 0"
                             ]
                            }
