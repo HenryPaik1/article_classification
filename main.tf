@@ -48,11 +48,12 @@ resource "null_resource" "clf_null" {
                             inline = [
                             "sudo apt-get update",
                             "sudo apt-get -y install python3-pip",
+                            "sudo apt-get update",
                             "sudo apt-get -y install unzip",
                             "wget https://chromedriver.storage.googleapis.com/74.0.3729.6/chromedriver_linux64.zip"
                             "unzip chromedriver_linux64.zip",
                             "git clone https://github.com/HenryPaik1/article_classification.git",
-                            "python3 ~/article_classification/run_article.py 0
+                            "python3 ~/article_classification/run_article.py 0"
                             ]
                            }
     }
