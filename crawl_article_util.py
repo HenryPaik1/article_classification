@@ -20,7 +20,7 @@ article_ls = list()
 
 options = webdriver.ChromeOptions()
 options.add_argument('--disable-notification')
-#options.add_argument('headless')
+options.add_argument('headless')
 #driver = webdriver.Chrome(options=options)
 driver = webdriver.Chrome('/home/ubuntu/chromedriver', options=options)
 

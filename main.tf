@@ -2,10 +2,7 @@
 # DEPLOY AN INSTANCE, THEN TRIGGER A PROVISIONER
 # See test/terraform_ssh_example.go for how to write automated tests for this code.
 # ---------------------------------------------------------------------------------------------------------------------
- 
-provider "aws" {
-region = "ap-northeast-2"
-}
+
 
 data "aws_security_group" "default" {
 name = "default"
@@ -29,14 +26,15 @@ resource "aws_instance" "article_clf" {
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "null_resource" "clf_null" {
-  triggers {
+  triggers= {
     public_ip = "${aws_instance.article_clf.public_ip}"
   }
 
   connection {
     type = "ssh"
     host = "${aws_instance.article_clf.public_ip}"
-    public_key = "${file("~/.ssh/dss_key.pub")}"
+        private_key = "${file("~/.ssh/dss_key")}"
+
     user = "${var.ssh_user}"
     port = "${var.ssh_port}"
     timeout = "1m"
@@ -46,17 +44,18 @@ resource "null_resource" "clf_null" {
                             inline = [
                             "sudo apt-get update",
                             "sudo apt-get -y install python3-pip",
-                            
+                            "pip3 install selenium",
+
                             "sudo apt-get update",
                             "sudo apt-get -y install unzip",
-                                                        
-                            "wget https://chromedriver.storage.googleapis.com/75.0.3770.8/chromedriver_linux64.zip"
+
+                            "wget https://chromedriver.storage.googleapis.com/75.0.3770.8/chromedriver_linux64.zip",
                             "unzip chromedriver_linux64.zip",
-                            
-                          
-                            
-                            "wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -"
-                            "sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'",
+
+
+
+                            "wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -",
+                            "sudo sh -c \"echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' >> /etc/apt/sources.list.d/google.list\"",
                             "sudo apt-get -y update",
                             "sudo apt-get -y install google-chrome-stable",
                             "sudo apt --fix-broken -y install",
@@ -66,4 +65,4 @@ resource "null_resource" "clf_null" {
                             ]
                            }
     }
-}
+

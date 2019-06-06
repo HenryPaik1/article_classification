@@ -7,7 +7,7 @@ key_name = "dss_key"
 public_key = "${file("~/.ssh/dss_key.pub")}"
 }
 
-resource "aws_security_group" "dss-terraform" {
+resource "aws_security_group" "security_dss" {
 name = "security_dss"
 description = "security group"
 
