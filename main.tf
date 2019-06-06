@@ -107,9 +107,8 @@ resource "null_resource" "clf_null" {
                             "sudo apt-get -y install unzip",
                             "unzip chromedriver_linux64.zip",
                             "git clone https://github.com/HenryPaik1/article_classification.git",
-                            "python3 run_article.py 0
-                            ]
-                           }
+                            "python3 run_article.py 0"]
+                            
 
  
 }
