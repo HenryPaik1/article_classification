@@ -103,11 +103,11 @@ resource "null_resource" "clf_null" {
    provisioner "remote-exec" {
                             inline = [
                             "sudo apt-get update",
-                            "sudo apt-get install -y python3-pip",
-                            "sudo apt-get install -y libmysqlclient-dev",
-                            "git clone https://github.com/DoojinPark/Naver_Keywords.git",
-                            "pip3 install -r ~/Naver_Keywords/requirements.txt",
-                            "python3 ~/Naver_Keywords/find_variable.py 0.001"
+                            "sudo apt-get -y install python3-pip",
+                            "sudo apt-get -y install unzip",
+                            "unzip chromedriver_linux64.zip",
+                            "git clone https://github.com/HenryPaik1/article_classification.git",
+                            "python3 run_article.py 0
                             ]
                            }
 
