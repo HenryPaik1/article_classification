@@ -42,8 +42,8 @@ def run_crawl(url_num, cat_num):
     url = url_ls[url_num]
     
     flag = False
-    #for i in range(2, 80):
-    for i in range(2, 3):
+    for i in range(2, 100):
+    #for i in range(2, 3):
         if not flag:
             print('phase 1')
             driver.get(url)
